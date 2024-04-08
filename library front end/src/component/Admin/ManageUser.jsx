@@ -61,7 +61,7 @@ const ManageUser = () => {
           </>
       </div>
 
-      {showbg?<div className='display'>            
+      {showbg?<div className='ManageUser'>            
           
           <div className='display_section'>
             <div>

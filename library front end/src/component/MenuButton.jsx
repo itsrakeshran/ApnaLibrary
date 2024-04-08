@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Toggle = () => {
+const ProtectedRoutes = () => {
   return (
     <div className='toggle_Button'>
         <Link to={"/student_menu"}><button>Student</button></Link>
@@ -12,4 +12,4 @@ const Toggle = () => {
   )
 }
 
-export default Toggle
+export default ProtectedRoutes

@@ -2,11 +2,26 @@
 import HorizontalButton from '../HorizontalButton'
 import AddBook from '../Forms/AddBook'
 import React, { useEffect, useState } from 'react';
-import Booklist from '../Booklist';
+import SearchAppBar from '../Book/Booklistnavbar'
+import Booklist from '../Book/Booklist';
+import BookTable from '../Book/BookTable'
 import PieChar from '../PieChar'
 
 const ManageBook = () => {
+  const[bookdata,setBookdata]=useState([
+    {
+      id: '',
+      title:'',
+      author:'',
+      Branch: '',
+      year: '',
+      edition:'',
+      quantity: ''
+    }
+  ]);
+
   const[showAddBookForm,setShowAddBookForm] =useState(false);
+
   const[showBackGrnd,setShowBackGrnd]=useState(true);
 
   useEffect(()=>{if(showAddBookForm){
@@ -14,7 +29,22 @@ const ManageBook = () => {
     }else{
       setShowBackGrnd(true)
     }}
-  ,[showAddBookForm])
+  ,[showAddBookForm]);
+
+
+  useEffect(()=>{fetchBookdata()},[bookdata]);
+
+  async function fetchBookdata(){
+    const getallbook_api_ulr="http://localhost:5000/book"
+    const response= await fetch(getallbook_api_ulr,{
+      method:"Get",
+      mode:"cors"     
+    });
+    const booklist= await response.json(response);
+    console.log(...booklist);
+    setBookdata(...booklist);
+    console.log(bookdata);
+  }
 
   return (
       <div className='display'> 
@@ -22,34 +52,24 @@ const ManageBook = () => {
         <div className="dispay-upper">
           <PieChar/>
         </div>   
-            
-        <div className="display-lower">
-          <div className="display-left">
-              <p>Books</p>
-              <div onClick={()=>setShowAddBookForm(true)}><HorizontalButton name="Add Book"/></div>
-              <HorizontalButton name="Delete Book"/>
-              <HorizontalButton name="Update Book"/>
-          </div>
-          <div className="display-right">
-            {showAddBookForm?
-                  <AddBook click={setShowAddBookForm}/>:
-                <>
-                  <div className="display-right-header">
-                  <h1>hello</h1>
+          
+        <div className="display-right">
+          {showAddBookForm?
+                <AddBook click={setShowAddBookForm}/>:
+              <>
+              <div className="display-right-header">
+                <SearchAppBar/>
+              </div>
+              
+              <div className="display-right-list">
+                <div className="display-right-list-booklist">
+                  <BookTable/>
                 </div>
-                <div className="display-right-list">
-                  <div className="display-right-list-booklist">
-                    <Booklist/>
-                    <Booklist/>
-                    <Booklist/>
-                    <Booklist/>
-                  </div>
-                </div>
-                </>}          
-          </div>
-        </div>       
+              </div>
+              </>}          
+        </div>
       </div>
   )
 }
 
-export default ManageBook
+export default ManageBook;

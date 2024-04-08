@@ -6,13 +6,13 @@ import { RiDashboard3Line } from "react-icons/ri";
 import { IoMdArrowDropright } from "react-icons/io";
 // import ManageBook from "./ManageBook";
 import Librarian_Dashboard from './Librarian_Dashboard';
+import LogoutButton from '../Button/LoginButton'
 
 
 const Librarian_Menu = () => { 
         
-        return (        
-                <>       
-                      <div className='menu_container'>  
+        return (             
+                <div className='menu_container'>  
                         <div className='left_sidebar'>
 
                                 <li id="username">
@@ -31,9 +31,10 @@ const Librarian_Menu = () => {
                                         {/* <ManageBook/> */}
                                         <Librarian_Dashboard/> 
                         </div>
+                        <div className="logout">
+                                <LogoutButton name={"Logout"}/> 
                         </div>
-                </>
-        
+                </div>        
         )
 }
 

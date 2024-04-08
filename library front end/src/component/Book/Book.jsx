@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 
 const Book = ({book}) => {
+  const[minbook,setMinbok]=useState(true);
+
+  useEffect(()=>{if(book.quantity>10){
+      setMinbok(true);
+    }else{
+      setMinbok(false); 
+    }})
+
 
   return (  
     <>    
@@ -17,8 +24,8 @@ const Book = ({book}) => {
                     <span id="book_writer">{book.edition}|{book.author}</span> <br />
                 </p>
           </div>
-          <div className='book_card_btm'>
-                  <p>Available</p>
+          <div className={minbook?'book_card_btm':'book_card_btm_min'} >
+                  <p>{minbook?"Available":"Only for Reading"}</p>
                   {/* <p>Only for Reading</p> */}
           </div>
             

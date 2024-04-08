@@ -1,10 +1,8 @@
 import React from 'react'
 import Itemcard from '../Itemcard'
-// import { CiUser } from "react-icons/ci";
+
 import { LiaBookSolid } from "react-icons/lia";
-// import { BiSolidCategoryAlt } from "react-icons/bi";
-// import { RiDashboard3Line } from "react-icons/ri";
-// import { IoMdArrowDropright } from "react-icons/io";
+
 
 const Student_Dashboard = () => {
   return (

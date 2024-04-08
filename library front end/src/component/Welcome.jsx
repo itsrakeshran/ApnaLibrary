@@ -1,8 +1,5 @@
-import React from 'react'
-import NewLogin from './NewLogin'
-// import Banner from '../image/welcome banner.png'
+import LoginForm from './Forms/Login'
 import bannerImage from '../image/welcome banner.png'
-import {Link} from "react-router-dom"
 
 const Welcome = () => {
   return (
@@ -15,7 +12,7 @@ const Welcome = () => {
               </div>
           </div>
           <div className='Loginform'>
-              <NewLogin/>
+              <LoginForm/>
           </div>
           
       </div>
