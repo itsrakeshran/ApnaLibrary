@@ -4,8 +4,15 @@ const Student = require('../model/student');
 getAllStudents=async(req,res)=>{
     
     try {
-        const response= await Student.find({});
+            const response= await Student.find({});
+            console.log(response);
+        if(response != undefined && response != null){
         res.status(200).json(response);
+        }
+        else{
+            console.log({msg:"Data Not Found"})
+            res.status(204).json({msg:"Data Not Found"});
+        }
     } catch (error) {
         res.status(400).send(`Error\n, ${error}`);
     }
@@ -16,7 +23,14 @@ getAllStudents=async(req,res)=>{
 getAllStudentsbyId=async(req,res)=>{
     try {
         const response= await Student.findOne({StudentID: `${req.params.id}`},{_id: 0, __v: 0});
-        res.status(200).json(response);
+
+        if(response){
+            res.status(200).json(response);            
+        }
+        else{
+            res.status(404).json({msg:"Studet Not Found"});
+        }
+        
     
     } catch (error) {
         res.status(400).send(`Error\n, ${error}`);

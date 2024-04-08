@@ -4,7 +4,7 @@ const Book = require("../model/book");
 //get all book
 async function getBookHandler(req,res)
     {
-        const allBooks = await Book.find({},{_id: 0, __v: 0});
+        const allBooks = await Book.find({},{_id: 0, __v: 0,edition:0});
         if (res !== undefined)
         {
         return res.json(allBooks);
